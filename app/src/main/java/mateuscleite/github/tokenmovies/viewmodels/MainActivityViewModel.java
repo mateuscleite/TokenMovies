@@ -4,6 +4,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -27,6 +28,7 @@ public class MainActivityViewModel extends ViewModel {
     public MutableLiveData<ArrayList<MainActivityViewModel>> mutableLiveData = new MutableLiveData<>();
     private ArrayList<MainActivityViewModel> arrayList = new ArrayList<>();
     private ArrayList<Movie> movies;
+    public MutableLiveData<Boolean> progressBar = new MutableLiveData<>();
 
     public String getMoviePosterUrl(){
         return movieModel.getPoster_url();
@@ -45,31 +47,47 @@ public class MainActivityViewModel extends ViewModel {
 
     }
 
+    private void showProgressBar(){
+        progressBar.postValue(true);
+    }
+
+    private void hideProgressBar(){
+        progressBar.postValue(false);
+    }
+
     public MainActivityViewModel(Movie movie){
         movieModel = movie;
     }
 
-    public MutableLiveData<ArrayList<MainActivityViewModel>> getMutableLiveData() {
+    public LiveData<ArrayList<MainActivityViewModel>> getMutableLiveData() {
+
+        showProgressBar();
+
         MovieApi api = MovieClient.getInstance().getMovieClient();
         Call<ArrayList<Movie>> call = api.getMovies();
         call.enqueue(new Callback<ArrayList<Movie>>() {
             @Override
             public void onResponse(Call<ArrayList<Movie>> call, Response<ArrayList<Movie>> response) {
+
+                hideProgressBar();
                 if(!response.isSuccessful()){
                     Log.d(TAG, "Error in response");
                     return;
                 }
-                movies = response.body();
-                for(int i = 0; i < movies.size(); i++){
-                    Movie myk = movies.get(i);
-                    MainActivityViewModel mainActivityViewModel = new MainActivityViewModel(myk);
-                    arrayList.add(mainActivityViewModel);
-                    mutableLiveData.setValue(arrayList);
+                if(response.body() != null) {
+                    movies = response.body();
+                    for (int i = 0; i < movies.size(); i++) {
+                        Movie parameterMovie = movies.get(i);
+                        MainActivityViewModel mainActivityViewModel = new MainActivityViewModel(parameterMovie);
+                        arrayList.add(mainActivityViewModel);
+                        mutableLiveData.setValue(arrayList);
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<Movie>> call, Throwable t) {
+                hideProgressBar();
                 Log.d(TAG, "No response");
             }
         });

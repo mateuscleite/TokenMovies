@@ -1,24 +1,25 @@
 package mateuscleite.github.tokenmovies;
 
+import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
-import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import mateuscleite.github.tokenmovies.adapters.MovieListAdapter;
-import mateuscleite.github.tokenmovies.models.Movie;
 import mateuscleite.github.tokenmovies.viewmodels.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ProgressBar progressBar;
     private RecyclerView recViewMoviesList;
     private MainActivityViewModel mainActivityViewModel;
     private MovieListAdapter adapter;
@@ -29,14 +30,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recViewMoviesList = findViewById(R.id.recViewMoviesList);
+        progressBar = findViewById(R.id.progressBar);
+        hideProgressBar();
 
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
+        //Observes the data coming from the API and renders it on the screen
         mainActivityViewModel.getMutableLiveData().observe(this, new Observer<ArrayList<MainActivityViewModel>>() {
+
             @Override
             public void onChanged(ArrayList<MainActivityViewModel> mainActivityViewModels) {
-                adapter = MovieListAdapter.getInstance( MainActivity.this, mainActivityViewModels);
+                adapter = new MovieListAdapter( MainActivity.this, mainActivityViewModels);
                 recViewMoviesList.setAdapter(adapter);
                 recViewMoviesList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            }
+        });
+
+        //Observes if data is being requested to determine if the progress bar should be visible
+        mainActivityViewModel.progressBar.observe(this, new Observer<Boolean>(){
+            @Override
+            public void onChanged(Boolean makingRequest) {
+                if(makingRequest) showProgressBar();
+                else hideProgressBar();
             }
         });
 
@@ -44,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
         developerLink.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
+    private void showProgressBar(){
+        progressBar.setVisibility(View.VISIBLE);
+    }
 
+    private void hideProgressBar(){
+        progressBar.setVisibility(View.GONE);
+    }
 
 }
