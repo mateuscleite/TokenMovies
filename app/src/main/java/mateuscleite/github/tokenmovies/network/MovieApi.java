@@ -6,6 +6,7 @@ import mateuscleite.github.tokenmovies.models.Movie;
 import mateuscleite.github.tokenmovies.models.MovieDetails;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface MovieApi {
 
@@ -13,6 +14,6 @@ public interface MovieApi {
     Call<ArrayList<Movie>> getMovies();
 
     @GET("movies/{id}")
-    Call<MovieDetails> getMovieDetails();
+    Call<MovieDetails> getMovieDetails(@Path("id") int movieId);
 
 }

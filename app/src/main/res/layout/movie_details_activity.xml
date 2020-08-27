@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/detailsPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgDetailsPoster"
+            android:layout_width="150dp"
+            android:layout_height="220dp"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="20dp" />
+
+        <RelativeLayout
+            android:id="@+id/detailsBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/imgDetailsPoster"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/txtDetailsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp" />
+
+            <TextView
+                android:id="@+id/txtDetailsVoteAverage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDetailsTitle"
+                android:paddingBottom="5dp" />
+
+            <TextView
+                android:id="@+id/txtDetailsRuntime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDetailsVoteAverage"
+                android:paddingBottom="5dp" />
+
+            <TextView
+                android:id="@+id/txtDetailsTagline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDetailsRuntime"
+                android:justificationMode="inter_word"
+                android:paddingBottom="5dp" />
+
+            <TextView
+                android:id="@+id/txtDetailsOverview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDetailsTagline"
+                android:justificationMode="inter_word"
+                android:paddingBottom="5dp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

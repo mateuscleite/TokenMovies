@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data class="MainActivityBinding">
+
         <variable
-            name= "moviesmodel"
+            name="moviesmodel"
             type="mateuscleite.github.tokenmovies.viewmodels.MainActivityViewModel" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_margin="10dp"
 
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card">
+        android:layout_margin="10dp"
+        android:padding="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -25,33 +24,32 @@
             <ImageView
                 android:id="@+id/imgMovieList"
                 android:layout_width="150dp"
-                android:layout_centerHorizontal="true"
                 android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/movie_poster"
                 app:imageUrl="@{moviesmodel.movieModel.poster_url}">
-
-
             </ImageView>
 
             <TextView
                 android:id="@+id/txtMovieNameList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/imgMovieList"
+                android:layout_centerHorizontal="true"
+                android:elevation="5dp"
                 android:fontFamily="monospace"
                 android:text="@{moviesmodel.movieModel.title}"
-                android:textStyle="bold"
-                android:elevation="5dp"
-                android:layout_below="@+id/imgMovieList"
-                android:layout_centerHorizontal="true"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtMovieReleaseList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="@{moviesmodel.movieModel.release_date}"
-                android:elevation="5dp"
                 android:layout_below="@+id/txtMovieNameList"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true"
+                android:elevation="5dp"
+                android:fontFamily="monospace"
+                android:text="@{moviesmodel.movieModel.release_date}" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

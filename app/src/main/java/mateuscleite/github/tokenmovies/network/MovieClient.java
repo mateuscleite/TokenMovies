@@ -17,6 +17,7 @@ public class MovieClient {
                 .build();
     }
 
+    //singleton pattern - guarantees only one connection to the server at a time
     public static synchronized MovieClient getInstance(){
         if(instance == null){
             instance = new MovieClient();

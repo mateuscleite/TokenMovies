@@ -2,11 +2,10 @@
     <string name="app_name">TokenMovies</string>
 
     <!-- Movies list screen -->
-    <string name="movie_name">Movie Name</string>
-    <string name="movie_release">Release Date</string>
     <string name="developed_by">Developed by
         <a href="https://github.com/mateuscleite">Mateus Castilho Leite</a>
     </string>
-    <string name="image_error">https://minutomt.com.br/wp-content/uploads/2019/01/Pipoca_Cinema_HP.jpg</string>
-    <string name="movie_list_api_url">https://desafio-mobile.nyc3.digitaloceanspaces.com/</string>
+
+    <!-- Movie details screen -->
+
 </resources>

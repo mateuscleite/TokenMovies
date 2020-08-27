@@ -8,7 +8,7 @@ public class MovieDetails extends Movie {
     private String imdb_id;
     private String tagline;
     private String overview;
-    private int vote_average;
+    private float vote_average;
     private int runtime;
     private String runtimeHours;
     private ArrayList<String> genres;
@@ -49,11 +49,11 @@ public class MovieDetails extends Movie {
         this.overview = overview;
     }
 
-    public int getVote_average() {
-        return vote_average;
+    public String getVote_average() {
+        return vote_average + "/10";
     }
 
-    public void setVote_average(int vote_average) {
+    public void setVote_average(float vote_average) {
         this.vote_average = vote_average;
     }
 
@@ -66,14 +66,14 @@ public class MovieDetails extends Movie {
     }
 
     public String getRuntimeHours() {
+        int hour = runtime/60;
+        int minute = runtime%60;
+        runtimeHours = hour + "h " + minute + "min";
         return runtimeHours;
     }
 
-
-    public void setRuntimeHours() {
-        int hour = runtime/60;
-        int minute = runtime%60;
-        runtimeHours = hour + ":" + minute;
+    public void setRuntimeHours(String runtimeHours) {
+        this.runtimeHours = runtimeHours;
     }
 
     public ArrayList<String> getGenres() {

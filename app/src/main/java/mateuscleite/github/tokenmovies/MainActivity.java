@@ -19,22 +19,27 @@ import mateuscleite.github.tokenmovies.viewmodels.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
+    //UI related attributes
     private ProgressBar progressBar;
     private RecyclerView recViewMoviesList;
     private MainActivityViewModel mainActivityViewModel;
     private MovieListAdapter adapter;
+
+    //Data sent to an activity
+    public static String intentMovieId = "intentMovieId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Initialize UI elements
         recViewMoviesList = findViewById(R.id.recViewMoviesList);
         progressBar = findViewById(R.id.progressBar);
         hideProgressBar();
 
+        //Initialize the ViewModel
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-
         //Observes the data coming from the API and renders it on the screen
         mainActivityViewModel.getMutableLiveData().observe(this, new Observer<ArrayList<MainActivityViewModel>>() {
 
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Footer has a link that opens the browser
         TextView developerLink = findViewById(R.id.developedBy);
         developerLink.setMovementMethod(LinkMovementMethod.getInstance());
     }
@@ -65,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void hideProgressBar(){
         progressBar.setVisibility(View.GONE);
+    }
+
+    public String getIntentMovieId() {
+        return intentMovieId;
     }
 
 }
