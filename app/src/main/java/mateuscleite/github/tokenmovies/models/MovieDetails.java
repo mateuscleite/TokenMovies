@@ -9,6 +9,7 @@ public class MovieDetails extends Movie {
     private String tagline;
     private String overview;
     private float vote_average;
+    private int vote_count;
     private int runtime;
     private String runtimeHours;
     private ArrayList<String> genres;
@@ -34,7 +35,10 @@ public class MovieDetails extends Movie {
     }
 
     public String getTagline() {
-        return tagline;
+        if(tagline.isEmpty()){
+            return tagline;
+        }
+        return "\"" + tagline + "\"";
     }
 
     public void setTagline(String tagline) {
@@ -49,12 +53,23 @@ public class MovieDetails extends Movie {
         this.overview = overview;
     }
 
-    public String getVote_average() {
-        return vote_average + "/10";
+    public String getVoteAverageAndCount() {
+        if(vote_count == 0){
+            return "No votes";
+        }
+        return vote_average + "/10 based on " + vote_count + " votes";
     }
 
     public void setVote_average(float vote_average) {
         this.vote_average = vote_average;
+    }
+
+    public int getVote_count() {
+        return vote_count;
+    }
+
+    public void setVote_count(int vote_count) {
+        this.vote_count = vote_count;
     }
 
     public int getRuntime() {

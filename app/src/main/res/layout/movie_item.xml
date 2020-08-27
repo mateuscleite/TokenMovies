@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data class="MainActivityBinding">
-
         <variable
             name="moviesmodel"
             type="mateuscleite.github.tokenmovies.viewmodels.MainActivityViewModel" />

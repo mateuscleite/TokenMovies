@@ -36,10 +36,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         Bundle info = getIntent().getExtras();
+        //if info if null, there was some communication error in the app
         if(info != null) {
             movieId = info.getInt(MainActivity.intentMovieId);
         }
 
+        //Initialize UI elements
         setContentView(R.layout.movie_details_activity);
         imgPoster = findViewById(R.id.imgDetailsPoster);
         txtTitle = findViewById(R.id.txtDetailsTitle);
@@ -65,14 +67,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
                         .load(movieDetailsViewModel.movieDetails.getPoster_url())
                         .into(imgPoster);
                 txtTitle.setText(movieDetailsViewModel.movieDetails.getTitle());
-                txtVoteAverage.setText(movieDetailsViewModel.movieDetails.getVote_average());
+                txtVoteAverage.setText(movieDetailsViewModel.movieDetails.getVoteAverageAndCount());
                 txtRuntime.setText(movieDetailsViewModel.movieDetails.getRuntimeHours());
                 txtTagline.setText(movieDetailsViewModel.movieDetails.getTagline());
                 txtDetailsOverview.setText(movieDetailsViewModel.movieDetails.getOverview());
             }
         });
 
-        //Observes if data is being requested to determine if the progress bar should be visible
+        //Observes if data is being requested to determine if the progress bar and default textViews should be visible
         MovieDetailsViewModel.progressBar.observe(this, new Observer<Boolean>(){
             @Override
             public void onChanged(Boolean makingRequest) {

@@ -34,6 +34,7 @@ public class MainActivityViewModel extends ViewModel {
         return movieModel.getPoster_url();
     }
 
+    //used at the view to load the image directly
     @BindingAdapter({"imageUrl"})
     public static void loadimage(ImageView imageView, String imageUrl){
         Glide.with(imageView.getContext())
@@ -59,6 +60,7 @@ public class MainActivityViewModel extends ViewModel {
         movieModel = movie;
     }
 
+    //requests the data to the server; errors only show a log message
     public LiveData<ArrayList<MainActivityViewModel>> getMutableLiveData() {
 
         showProgressBar();

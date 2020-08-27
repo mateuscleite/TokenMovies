@@ -5,7 +5,11 @@
     <string name="developed_by">Developed by
         <a href="https://github.com/mateuscleite">Mateus Castilho Leite</a>
     </string>
+    <string name="movie_poster">Movie Poster Image</string>
 
     <!-- Movie details screen -->
+    <string name="vote_average">TMDB Score</string>
+    <string name="runtime">Runtime</string>
+    <string name="overview">Overview</string>
 
 </resources>

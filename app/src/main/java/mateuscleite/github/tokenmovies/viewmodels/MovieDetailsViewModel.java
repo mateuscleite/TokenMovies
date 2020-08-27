@@ -1,16 +1,11 @@
 package mateuscleite.github.tokenmovies.viewmodels;
 
 import android.util.Log;
-import android.widget.ImageView;
 
-import androidx.databinding.BindingAdapter;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.bumptech.glide.Glide;
-
-import mateuscleite.github.tokenmovies.R;
 import mateuscleite.github.tokenmovies.models.MovieDetails;
 import mateuscleite.github.tokenmovies.network.MovieApi;
 import mateuscleite.github.tokenmovies.network.MovieClient;
@@ -25,15 +20,6 @@ public class MovieDetailsViewModel extends ViewModel {
     public MovieDetails movieDetails;
     public MutableLiveData<MovieDetailsViewModel> mutableLiveData = new MutableLiveData<>();
     public static MutableLiveData<Boolean> progressBar = new MutableLiveData<>();
-
-    @BindingAdapter({"imageUrl"})
-    public static void loadimage(ImageView imageView, String imageUrl){
-        Glide.with(imageView.getContext())
-                .asBitmap()
-                .error(R.drawable.movieroll)
-                .load(imageUrl)
-                .into(imageView);
-    }
 
     public MovieDetailsViewModel(){
 
@@ -51,6 +37,7 @@ public class MovieDetailsViewModel extends ViewModel {
         movieDetails = movie;
     }
 
+    //requests the data to the server; errors only show a log message
     public LiveData<MovieDetailsViewModel> getMutableLiveData(int movieId) {
 
         showProgressBar();

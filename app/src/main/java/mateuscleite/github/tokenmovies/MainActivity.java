@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             public void onChanged(ArrayList<MainActivityViewModel> mainActivityViewModels) {
                 adapter = new MovieListAdapter( MainActivity.this, mainActivityViewModels);
                 recViewMoviesList.setAdapter(adapter);
-                recViewMoviesList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                recViewMoviesList.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
             }
         });
 
@@ -71,10 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void hideProgressBar(){
         progressBar.setVisibility(View.GONE);
-    }
-
-    public String getIntentMovieId() {
-        return intentMovieId;
     }
 
 }

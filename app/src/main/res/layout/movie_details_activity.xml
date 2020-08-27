@@ -3,64 +3,110 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/detailsPage"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/imgDetailsPoster"
-            android:layout_width="150dp"
-            android:layout_height="220dp"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="20dp" />
+        android:layout_height="match_parent"
+        android:id="@+id/scrollDetails"
+        android:fillViewport="true">
 
         <RelativeLayout
-            android:id="@+id/detailsBox"
+            android:id="@+id/detailsPage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/imgDetailsPoster"
-            android:padding="15dp">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/txtDetailsTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp" />
+            <ImageView
+                android:id="@+id/imgDetailsPoster"
+                android:layout_width="150dp"
+                android:layout_height="220dp"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/movie_poster"
+                android:paddingTop="20dp" />
 
-            <TextView
-                android:id="@+id/txtDetailsVoteAverage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtDetailsTitle"
-                android:paddingBottom="5dp" />
+            <RelativeLayout
+                android:id="@+id/detailsBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/imgDetailsPoster"
+                android:padding="15dp">
 
-            <TextView
-                android:id="@+id/txtDetailsRuntime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtDetailsVoteAverage"
-                android:paddingBottom="5dp" />
+                <TextView
+                    android:id="@+id/txtDetailsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:fontFamily="monospace"/>
 
-            <TextView
-                android:id="@+id/txtDetailsTagline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtDetailsRuntime"
-                android:justificationMode="inter_word"
-                android:paddingBottom="5dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtDetailsVoteAverageItem"
+                    android:layout_below="@+id/txtDetailsTitle"
+                    android:text="@string/vote_average"
+                    android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/txtDetailsOverview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtDetailsTagline"
-                android:justificationMode="inter_word"
-                android:paddingBottom="5dp" />
+                <TextView
+                    android:id="@+id/txtDetailsVoteAverage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtDetailsVoteAverageItem"
+                    android:paddingBottom="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtDetailsRuntimeItem"
+                    android:layout_below="@+id/txtDetailsVoteAverage"
+                    android:text="@string/runtime"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/txtDetailsRuntime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtDetailsRuntimeItem"
+                    android:paddingBottom="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtDetailsTaglineItem"
+                    android:layout_below="@+id/txtDetailsRuntime"
+                    android:text="@string/overview"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/txtDetailsTagline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtDetailsTaglineItem"
+                    android:justificationMode="inter_word"
+                    android:textStyle="italic"
+                    android:paddingBottom="5dp" />
+
+                <TextView
+                    android:id="@+id/txtDetailsOverview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtDetailsTagline"
+                    android:justificationMode="inter_word"
+                    android:paddingBottom="10dp" />
+
+                <TextView
+                    android:id="@+id/txtDetailsImdbLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtDetailsOverview"
+                    android:justificationMode="inter_word"
+                    android:paddingBottom="5dp" />
+
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
-    </RelativeLayout>
+    </ScrollView>
 
     <ProgressBar
         android:id="@+id/progressBar"
